@@ -6,12 +6,20 @@ class ItemPedido extends Model {
       quantidade: DataTypes.INTEGER,
       observacao: DataTypes.STRING,
       status: DataTypes.ENUM('PENDENTE', 'EM_PREPARO', 'PRONTO', 'ENTREGUE'),
-    }, { sequelize });
-  }
-
-  static associate(models) {
-    this.belongsTo(models.Comanda, { foreignKey: 'comandaId', as: 'comanda' });
-    this.belongsTo(models.ItemCardapio, { foreignKey: 'itemCardapioId', as: 'item' });
+      
+      comandaId: {
+        type: DataTypes.INTEGER,
+        field: 'id_comanda'
+      },
+      itemCardapioId: {
+        type: DataTypes.INTEGER,
+        field: 'id_produto'
+      }
+    }, { 
+      sequelize, 
+      tableName: 'pedidos', 
+      underscored: true 
+    });
   }
 }
 module.exports = ItemPedido;

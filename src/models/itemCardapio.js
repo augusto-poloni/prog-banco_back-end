@@ -8,7 +8,11 @@ class ItemCardapio extends Model {
       preco: DataTypes.DECIMAL(10, 2),
       tipo: DataTypes.ENUM('PRATO', 'BEBIDA'), 
       disponivel: DataTypes.BOOLEAN
-    }, { sequelize });
+    }, { 
+      sequelize, 
+      tableName: 'produtos', 
+      underscored: true 
+    });
   }
 }
 module.exports = ItemCardapio;
